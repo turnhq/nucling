@@ -81,3 +81,40 @@ def clean_zipcode( zipcode ):
             .format( type( '' ), type( zipcode ) ) )
     results = regex_numbers.findall( zipcode )
     return "".join( results )
+
+
+def link_header( header, link_delimiter=',', param_delimiter=';' ):
+    """
+    parse to a dict the response of the header ``link``
+
+    Parameters
+    ----------
+    header: string
+        content of the header ``link``
+    link_delimiter: Optional[str]
+        separator in the content
+    param_delimiter: Optional[str]
+        character to split the parameter ``rel`` in the header
+
+    Returns
+    -------
+    dict
+
+    Note
+    ----
+    RFC of the header link
+    `link header <https://tools.ietf.org/html/rfc5988>`_
+    """
+    result = {}
+    links = header.split( link_delimiter )
+    for link in links:
+        segments = link.split( param_delimiter )
+        if len( segments ) < 2:
+            continue
+        link_part = segments[0].strip()
+        rel_part = segments[1].strip().split( '=' )[1][1:-1]
+        if not link_part.startswith( '<' ) and not link_part.endswith( '>' ):
+            continue
+        link_part = link_part[1:-1]
+        result[rel_part] = link_part
+    return result

@@ -2,7 +2,7 @@ import base64
 import os
 
 
-def base64_encode(s):
+def base64_encode( s ):
     """
     encode a kind of string in base64
 
@@ -23,15 +23,15 @@ def base64_encode(s):
 
     Examples
     --------
-    >>>  base64_encode('asdf')
+    >>>  base64_encode( 'asdf' )
     'YXNkZg=='
     """
-    if isinstance(s, str):
-        s = s.encode('utf-8')
-    return base64.urlsafe_b64encode(s).decode('utf-8')
+    if isinstance( s, str ):
+        s = s.encode( 'utf-8' )
+    return base64.urlsafe_b64encode( s ).decode( 'utf-8' )
 
 
-def base64_decode(s):
+def base64_decode( s ):
     """
     dencode a string of base64
 
@@ -47,13 +47,13 @@ def base64_decode(s):
 
     Examples
     --------
-    >>>  base64_decode('YXNkZg==')
+    >>>  base64_decode( 'YXNkZg==' )
     'asdf'
     """
-    return base64.urlsafe_b64decode(s).decode('utf-8')
+    return base64.urlsafe_b64decode( s ).decode( 'utf-8' )
 
 
-def random_b64(number_of_bytes=3):
+def random_b64( number_of_bytes=3 ):
     """
     Generate a random string of base64
 
@@ -61,7 +61,7 @@ def random_b64(number_of_bytes=3):
     ----------
     number_of_bytes: int, optional
         number of bytes used for generated the string of base64
-        (the default is 3)
+        ( the default is 3 )
 
     Returns
     -------
@@ -72,15 +72,15 @@ def random_b64(number_of_bytes=3):
     --------
     >>> random_b64()
     'nuff'
-    >>> random_b64(1)
+    >>> random_b64( 1 )
     'VA=='
-    >>> random_b64(4)
+    >>> random_b64( 4 )
     '9Vag-Q=='
     """
-    return base64_encode(os.urandom(number_of_bytes))
+    return base64_encode( os.urandom( number_of_bytes ))
 
 
-def base64_decode_optional_padding(data):
+def base64_decode_optional_padding( data ):
     """
     Decode base64, padding being optional.
 
@@ -89,11 +89,11 @@ def base64_decode_optional_padding(data):
     data: string
         Base64 data as an ASCII byte string
     """
-    if isinstance(data, bytes):
+    if isinstance( data, bytes ):
         data = data.decode()
     else:
-        data = data.encode('utf-8')
-    missing_padding = len(data) % 4
+        data = data.encode( 'utf-8' )
+    missing_padding = len( data ) % 4
     if missing_padding != 0:
-        data += b'=' * (4 - missing_padding)
-    return base64_decode(data)
+        data += b'=' * ( 4 - missing_padding )
+    return base64_decode( data )
