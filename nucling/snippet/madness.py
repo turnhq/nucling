@@ -1,12 +1,12 @@
 """
 function for get random things
 """
-import binascii
-import os
+import base64
 import random
 import string
-import base64
+
 from nucling.snippet import base_64
+
 
 def generate_string( length=10, letters=string.ascii_letters ):
     """
@@ -52,9 +52,11 @@ def generate_email( domain=None, extention=None ):
         'extention': extention,
     })
 
+
 def generate_password(
         length=20,
-        letters=( string.ascii_letters + string.digits + string.punctuation ) ):
+        letters=(
+            string.ascii_letters + string.digits + string.punctuation ) ):
     """
     generate a random password
 

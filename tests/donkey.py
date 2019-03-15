@@ -1,5 +1,7 @@
 from unittest import TestCase
+
 from nucling import donkey
+
 
 class Test_donkey(TestCase):
 
@@ -52,7 +54,6 @@ class Test_donkey(TestCase):
             'b': { 'c': 1 },
             'c': { 'd': { 'f': 10 } },
         }
-        expected = 10
         with self.assertRaises( KeyError ):
             donkey.get( 'c__g__f', d )
 
