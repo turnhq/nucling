@@ -9,13 +9,13 @@ README = open(os.path.join( here, 'README.rst' ) ).read()
 
 setup(
     name='nucling',
-    version='1.1',
+    version='1.2',
     description='',
     long_description=README,
     license='',
     author='',
     author_email='',
-    packages=[ 'nucling' ],
+    packages=find_packages(),
     install_requires=[],
     dependency_links=[],
     classifiers=[
